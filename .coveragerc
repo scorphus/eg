@@ -1,0 +1,7 @@
+[run]
+omit =
+    eg/__init__.py
+    eg/__main__.py
+branch = True
+source =
+    eg

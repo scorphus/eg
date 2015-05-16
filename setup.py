@@ -1,7 +1,7 @@
 try:
-    from setuptools import setup
+    from setuptools import setup, find_packages
 except ImportError:
-    from distutils.core import setup
+    from distutils.core import setup, find_packages
 
 # Also bump at eg.eg_util.VERSION
 VERSION = '0.1.2'
@@ -40,7 +40,9 @@ config = {
     'author_email': 'sudar.sam@gmail.com',
     'version': VERSION,
     'install_requires': [],
-    'test_requires': ['nose', 'mock'],
+    'extras_require': {
+        'tests': ['coverage', 'nose', 'nose_focus', 'mock', 'tox', 'yanc']
+    },
     'packages': ['eg'],
     'scripts': ['bin/eg'],
     'package_data': {
