@@ -8,14 +8,33 @@ python:
   - "3.5"
   - "3.6"
 
-# Temporarily use xenial with with sudo to install Python 3.7. References:
+# Temporarily use xenial with with sudo to install Python 3.7 and dev releases
+# References:
 # https://github.com/travis-ci/travis-ci/issues/9069
 # https://github.com/travis-ci/travis-ci/issues/9815
 matrix:
   include:
+    - python: "3.6-dev"
+      dist: xenial
+      sudo: required
     - python: "3.7"
       dist: xenial
       sudo: required
+    - python: "3.7-dev"
+      dist: xenial
+      sudo: required
+    - python: "3.8-dev"
+      dist: xenial
+      sudo: required
+    - python: "nightly"
+      dist: xenial
+      sudo: required
+  allow_failures:
+    - python: "3.8-dev"
+    - python: "3.6-dev"
+    - python: "3.7-dev"
+    - python: "nightly"
+
 
 # Command to run tests
 script: py.test
