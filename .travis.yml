@@ -14,6 +14,8 @@ python:
 # https://github.com/travis-ci/travis-ci/issues/9815
 matrix:
   include:
+    - language: generic
+      os: osx
     - python: "3.6-dev"
       dist: xenial
       sudo: required
@@ -35,6 +37,13 @@ matrix:
     - python: "3.7-dev"
     - python: "nightly"
 
+# Install Python on OSX
+install:
+  - if [[ $TRAVIS_OS_NAME == "osx" ]]; then brew update ; fi
+  - if [[ $TRAVIS_OS_NAME == "osx" ]]; then brew upgrade python; fi
+  - if [[ $TRAVIS_OS_NAME == "osx" ]]; then pip3 install virtualenv; fi
+  - if [[ $TRAVIS_OS_NAME == "osx" ]]; then virtualenv venv -p python3; fi
+  - if [[ $TRAVIS_OS_NAME == "osx" ]]; then source venv/bin/activate; fi
 
 # Command to run tests
 script: py.test
